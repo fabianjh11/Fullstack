@@ -41,7 +41,7 @@ const getStartingSnakeLLValue = board => {
 };
   
 
-export default function Main() {
+export default function Main( { records, onUpdateRecord } ) {
     const [isPaused, setIsPaused] = useState(true);
     const [direction, setDirection] = useState(Direction.RIGHT);
 
@@ -172,6 +172,7 @@ export default function Main() {
             if(score > recordInt) {
               const docRef = doc.ref;
               updateDoc(docRef, {record: score});
+              onUpdateRecord(score);
             }
           });
         }).catch((error) => {

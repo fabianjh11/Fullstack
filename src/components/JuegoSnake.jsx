@@ -11,7 +11,12 @@ export default function JuegoSnake() {
     const [record, setRecord] = useState(0);
     const navigate = useNavigate();
 
+    const updateRecord = (newRecord) => {
+        setRecord(newRecord);
+    }
+
     useEffect(() => {
+        setRecord(record);
         const email = localStorage.getItem("email").toLowerCase();
         const getUserInfo = async () => {
             const usuariosRef = collection(db, 'usuarios');
@@ -42,7 +47,7 @@ export default function JuegoSnake() {
                     <p>{user}</p>
                     <p>Récord: {record}</p>
                 </div>
-            <Main />
+            <Main records={record} onUpdateRecord={updateRecord}/>
             <div className="btns">
                 <Link className='volver' to="/">Volver</Link>
             </div>
